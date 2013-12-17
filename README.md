@@ -4,37 +4,44 @@ Github post-receive webhook receiver
 
 ## Install
 
-* Copy config file to /etc/github-deploy.json
+### 1. Copy config file to `/etc/github-deploy.json`
+
+```bash
+sudo cp config.example.json /etc/github-deploy.json
+```
+
+### 2. Edit config file
 
 
-    sudo cp config.example.json /etc/github-deploy.json
+### 3. Copy init script
 
-
-* Edit config file
-
-* Copy init script
-
+```bash
     sudo cp extra/debian/github-deploy.init /etc/init.d/github-deploy # debian style
     sudo cp extra/centos/github-deploy.init /etc/init.d/github-deploy # redhat style
 
     sudo chmod +x /etc/init.d/github-deploy
+```
 
-* Start deamon
+### 4. Start deamon
 
+```
     sudo /etc/init.d/github-deamon start
+```
+
+### 5. Add to run level
 
 
-* Add to run level
-    
-    sudo update-rc.d add github-deploy defaults # debian style
-    sudo /sbin/chkconfig --add github-deploy # redhat style
-
+```bash 
+sudo update-rc.d add github-deploy defaults # debian style
+sudo /sbin/chkconfig --add github-deploy # redhat style
+```
 
 ## Config file
 
-Config file is JSON
+Config file is JSON stored on `/etc/github-deploy.json`
 
 
+```json
     {
         "port": 8001,
         "allow_hosts" : ["207.97.227.253", "50.57.128.197", "108.171.174.178", "50.57.231.61"],
@@ -46,6 +53,7 @@ Config file is JSON
             "command": "echo deploying"
         }]
     }
+```
 
 
 ### port
